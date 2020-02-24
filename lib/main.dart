@@ -12,60 +12,67 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: Text('Demo  Page'),
-          backgroundColor: Colors.amberAccent,
+          backgroundColor: Colors.blue[900],
         ),
         body: SafeArea(
-          child: ListView(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
             children: <Widget>[
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              Stack(
                 children: <Widget>[
-                  Column(
-                    children: <Widget>[
-                      Image.asset(
-                        'images/food.jpg',
-                        width: 500,
-                        height: 200,
+                  Container(
+                    width: 400,
+                    height: 500,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                    ),
+                  ),
+                  Positioned(
+                    top: 100,
+                  
+                    child: Container(
+                      width: 375,
+                      height: 400,
+                      decoration: BoxDecoration(
+                        color:Colors.white,
+                        boxShadow: [
+                          new BoxShadow(
+                            color: Colors.black,
+                            blurRadius: 20.0,
+                          ),
+                        ],
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(30),
+                            topRight: Radius.circular(30)),
                       ),
-                    ],
-                  ),
-                  Divider(
-                    height: 20.0,
-                  ),
-                  Column(
-                    children: <Widget>[
-                      BuildRow(),
-                    ],
-                  ),
-                  Divider(
-                    height: 20.0,
-                  ),
-                  Column(
-                    children: <Widget>[
-                      BuildRow(),
-                    ],
-                  ),
-                  Divider(
-                    height: 20.0,
-                  ),
-                  Column(
-                    children: <Widget>[
-                      BuildRow(),
-                    ],
-                  ),
-                  Divider(
-                    height: 20.0,
-                  ),
-                  Column(
-                    children: <Widget>[
-                      BuildRow(),
-                    ],
-                  ),
-                  Divider(
-                    height: 20.0,
+                    ),
                   ),
                 ],
               ),
+              Row(
+                children: <Widget>[
+                  BottomButton(
+                    colur: Colors.orange,
+                    icon: Icons.home,
+                  ),
+                  BottomButton(
+                    colur: Colors.purple,
+                    icon: Icons.account_box,
+                  ),
+                  BottomButton(
+                    colur: Colors.green,
+                    icon: Icons.edit,
+                  ),
+                  BottomButton(
+                    colur: Colors.blue,
+                    icon: Icons.email,
+                  ),
+                  BottomButton(
+                    colur: Colors.yellow,
+                    icon: Icons.add,
+                  ),
+                ],
+              )
             ],
           ),
         ),
@@ -74,47 +81,21 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class BuildRow extends StatelessWidget {
-  const BuildRow({
-    Key key,
-  }) : super(key: key);
-
+class BottomButton extends StatelessWidget {
+  BottomButton({@required this.colur, @required this.icon});
+  final Color colur;
+  final IconData icon;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        Container(
-          padding: EdgeInsets.all(20),
-          height: 100.0,
-          width: 100.0,
-          child: Icon(Icons.add_alarm),
-          decoration: BoxDecoration(
-            color: Colors.deepOrange,
-            borderRadius: BorderRadius.all(Radius.circular(10.0)),
-          ),
+    return Expanded(
+      child: Container(
+        child: Icon(icon),
+        width: 50,
+        height: 89,
+        decoration: BoxDecoration(
+          color: colur,
         ),
-        Container(
-          padding: EdgeInsets.all(20),
-          height: 100.0,
-          width: 100.0,
-          child: Icon(Icons.add_a_photo),
-          decoration: BoxDecoration(
-            color: Colors.deepOrange,
-            borderRadius: BorderRadius.all(Radius.circular(10.0)),
-          ),
-        ),
-        Container(
-          padding: EdgeInsets.all(20),
-          height: 100.0,
-          width: 100.0,
-          child: Icon(Icons.add_a_photo),
-          decoration: BoxDecoration(
-            color: Colors.deepOrange,
-            borderRadius: BorderRadius.all(Radius.circular(10.0)),
-          ),
-        )
-      ],
+      ),
     );
   }
 }
