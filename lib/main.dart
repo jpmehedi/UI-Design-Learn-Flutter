@@ -16,62 +16,17 @@ class MyApp extends StatelessWidget {
         ),
         body: SafeArea(
           child: Column(
-            mainAxisSize: MainAxisSize.max,
             children: <Widget>[
-              Stack(
-                children: <Widget>[
-                  Container(
-                    width: 400,
-                    height: 500,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                    ),
-                  ),
-                  Positioned(
-                    top: 100,
-                  
-                    child: Container(
-                      width: 375,
-                      height: 400,
-                      decoration: BoxDecoration(
-                        color:Colors.white,
-                        boxShadow: [
-                          new BoxShadow(
-                            color: Colors.black,
-                            blurRadius: 20.0,
-                          ),
-                        ],
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(30),
-                            topRight: Radius.circular(30)),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  BottomButton(
-                    colur: Colors.orange,
-                    icon: Icons.home,
-                  ),
-                  BottomButton(
-                    colur: Colors.purple,
-                    icon: Icons.account_box,
-                  ),
-                  BottomButton(
-                    colur: Colors.green,
-                    icon: Icons.edit,
-                  ),
-                  BottomButton(
-                    colur: Colors.blue,
-                    icon: Icons.email,
-                  ),
-                  BottomButton(
-                    colur: Colors.yellow,
-                    icon: Icons.add,
-                  ),
-                ],
+              Container(
+                height: 200,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: <Widget>[
+                    CardBuilder(),
+                    CardBuilder(),
+                    CardBuilder(),
+                  ],
+                ),
               )
             ],
           ),
@@ -81,20 +36,35 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class BottomButton extends StatelessWidget {
-  BottomButton({@required this.colur, @required this.icon});
-  final Color colur;
-  final IconData icon;
+class CardBuilder extends StatelessWidget {
+  const CardBuilder({
+    Key key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        child: Icon(icon),
-        width: 50,
-        height: 89,
-        decoration: BoxDecoration(
-          color: colur,
-        ),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Card(
+        elevation: 5,
+        child: Container(
+            height: 200,
+            child: Stack(
+              children: <Widget>[
+                Image.asset('images/food.jpg'),
+                Positioned(
+                  left: 65,
+                  child: Text(
+                    'Food Card',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30,
+                      color: Colors.yellow[900],
+                    ),
+                  ),
+                ),
+              ],
+            )),
       ),
     );
   }
