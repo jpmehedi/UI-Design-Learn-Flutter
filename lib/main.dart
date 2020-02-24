@@ -15,12 +15,57 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.amberAccent,
         ),
         body: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          child: ListView(
             children: <Widget>[
-              BuildRow(),
-              BuildRow(),
-              BuildRow(),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Column(
+                    children: <Widget>[
+                      Image.asset(
+                        'images/food.jpg',
+                        width: 500,
+                        height: 200,
+                      ),
+                    ],
+                  ),
+                  Divider(
+                    height: 20.0,
+                  ),
+                  Column(
+                    children: <Widget>[
+                      BuildRow(),
+                    ],
+                  ),
+                  Divider(
+                    height: 20.0,
+                  ),
+                  Column(
+                    children: <Widget>[
+                      BuildRow(),
+                    ],
+                  ),
+                  Divider(
+                    height: 20.0,
+                  ),
+                  Column(
+                    children: <Widget>[
+                      BuildRow(),
+                    ],
+                  ),
+                  Divider(
+                    height: 20.0,
+                  ),
+                  Column(
+                    children: <Widget>[
+                      BuildRow(),
+                    ],
+                  ),
+                  Divider(
+                    height: 20.0,
+                  ),
+                ],
+              ),
             ],
           ),
         ),
@@ -43,7 +88,7 @@ class BuildRow extends StatelessWidget {
           padding: EdgeInsets.all(20),
           height: 100.0,
           width: 100.0,
-          child: Icon(Icons.add_a_photo),
+          child: Icon(Icons.add_alarm),
           decoration: BoxDecoration(
             color: Colors.deepOrange,
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
