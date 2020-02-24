@@ -14,30 +14,62 @@ class MyApp extends StatelessWidget {
           title: Text('Demo  Page'),
           backgroundColor: Colors.amberAccent,
         ),
-        body: Padding(
-          
-          padding: EdgeInsets.all(20),
-          child: Text(
-            'The qucik brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog',
-            textAlign: TextAlign.justify,
-            textDirection: TextDirection.rtl,
-            style: TextStyle(fontSize: 20, shadows: <Shadow>[
-              Shadow(
-                offset: Offset(2, 2),
-                blurRadius: 5.0,
-                color: Colors.grey,
-              )
-            ]),
+        body: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              BuildRow(),
+              BuildRow(),
+              BuildRow(),
+            ],
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          child: Icon(Icons.add),
-          foregroundColor: Colors.blueGrey,
-          hoverColor: Colors.lightBlue,
-          focusElevation: 5.0,
-        ),
       ),
+    );
+  }
+}
+
+class BuildRow extends StatelessWidget {
+  const BuildRow({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: <Widget>[
+        Container(
+          padding: EdgeInsets.all(20),
+          height: 100.0,
+          width: 100.0,
+          child: Icon(Icons.add_a_photo),
+          decoration: BoxDecoration(
+            color: Colors.deepOrange,
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.all(20),
+          height: 100.0,
+          width: 100.0,
+          child: Icon(Icons.add_a_photo),
+          decoration: BoxDecoration(
+            color: Colors.deepOrange,
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.all(20),
+          height: 100.0,
+          width: 100.0,
+          child: Icon(Icons.add_a_photo),
+          decoration: BoxDecoration(
+            color: Colors.deepOrange,
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          ),
+        )
+      ],
     );
   }
 }
