@@ -5,6 +5,20 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+
+List peopele = [
+{"name":"Valina","email":"vdillway0@state.gov","language":"Latvian"},
+{"name":"Lou","email":"lmccaughran1@usnews.com","language":"Māori"},
+{"name":"Jacinda","email":"jbottle2@google.es","language":"Danish"},
+{"name":"Irina","email":"iskellen3@wikispaces.com","language":"Japanese"},
+{"name":"Damian","email":"dtimpany4@liveinternet.ru","language":"West Frisian"},
+{"name":"Kaylee","email":"kmclanachan5@slashdot.org","language":"Croatian"},
+{"name":"Salvador","email":"sphysic6@youtu.be","language":"Catalan"},
+{"name":"Nessie","email":"ntomicki7@mozilla.com","language":"Somali"},
+{"name":"Merilyn","email":"mbatty8@miibeian.gov.cn","language":"Bosnian"},
+{"name":"Madeleine","email":"mkayes9@squarespace.com","language":"Amharic"}
+];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,57 +29,24 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.blue[900],
         ),
         body: SafeArea(
-          child: Column(
-            children: <Widget>[
-              Container(
-                height: 200,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: <Widget>[
-                    CardBuilder(),
-                    CardBuilder(),
-                    CardBuilder(),
-                  ],
-                ),
-              )
-            ],
+          child: ListView.builder(
+            itemCount: peopele.length,
+            itemBuilder: (BuildContext context, int index){
+              return Column(
+                children: <Widget>[
+                  ListTile(
+                    leading: CircleAvatar(
+                      child: Text(peopele[index]['name'][0]),
+                    ),
+                    title: Text(peopele[index]['name']),
+                    subtitle: Text(peopele[index]['email']),
+                  )
+                ],
+              );
+            },
+            ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class CardBuilder extends StatelessWidget {
-  const CardBuilder({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Card(
-        elevation: 5,
-        child: Container(
-            height: 200,
-            child: Stack(
-              children: <Widget>[
-                Image.asset('images/food.jpg'),
-                Positioned(
-                  left: 65,
-                  child: Text(
-                    'Food Card',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                      color: Colors.yellow[900],
-                    ),
-                  ),
-                ),
-              ],
-            )),
-      ),
     );
   }
 }
