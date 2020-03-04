@@ -27,6 +27,7 @@ flutter:
   assets:
     - images/food.jpg
     - images/avatar.png
+    - assets/data.json
     
 
   # fonts:
