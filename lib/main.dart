@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
+//import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert';
 import 'dart:async';
 import 'pageOne.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(MaterialApp(
@@ -17,40 +18,47 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  List data;
-  Future<String> loadJsonData() async {
-    var JsonText = await rootBundle.loadString('assets/data.json');
+
+  List posts;
+  Future<bool> getjsonData() async {
+    String serviceURL = 'https://jsonplaceholder.typicode.com/posts';
+    var response = await http.get(serviceURL);
     setState(() {
-      data = json.decode(JsonText);
-      print(JsonText);
+      posts = json.decode(response.body.toString());
+      print(posts[0]);
     });
   }
 
   @override
   void initState() {
-    this.loadJsonData();
+    this.getjsonData();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'Demo  Page',
-            style: TextStyle(color: Colors.white),
-          ),
+      appBar: AppBar(
+        title: Text(
+          'Demo  Page',
+          style: TextStyle(color: Colors.white),
         ),
-        body: ListView.builder(
-            itemCount: data.length,
-            itemBuilder: (BuildContext context, int index) {
-              return ListTile(
-                title: Text(data[index]['name']),
-                subtitle: Text(data[index]['email']),
-                onTap: (){
-                 Navigator.push(context, MaterialPageRoute(builder:(context)=>PageOne(data[index])));
-                },
-              );
-            },),);
+      ),
+      body: ListView.builder(
+        itemCount: posts.length == null? 0 :posts.length,
+        itemBuilder: (BuildContext context, int index) {
+          return ListTile(
+            title: Text(posts[index]['title']),
+            subtitle: Text(posts[index]['body']),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => PageOne(posts[index])));
+            },
+          );
+        },
+      ),
+    );
   }
 }

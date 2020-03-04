@@ -25,8 +25,8 @@ class _PageOneState extends State<PageOne> {
           body: Column(
             children: <Widget>[
               Image.asset('images/food.jpg'),
-              Text("Name: ${data['name']}"),
-              Text("Email: ${data['email']}"),
+              Text("title: ${data['title']}"),
+              Text("Description: ${data['body']}"),
               RaisedButton(
                 child: Text('Go Back'),
                 onPressed: () {
